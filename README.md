@@ -107,6 +107,41 @@ Once you've created the topic and set up the subscription you can try it out lik
 $ aws sns publish --topic-arn arn:aws:sns:eu-west-1:1234567890:sploxy --message file://message.json
 ```
 
+## Slack message structure
+
+A Slack message must have a channel, and it either needs a text or attachments. The simplest message looks like this:
+
+```json
+{
+  "channel": "#general",
+  "text": "Hello world"
+}
+```
+
+If you want to control the layout of the message, the name and icon of the sender, and other things there's a lot of other options to set. Here's a moderately complex message:
+
+```json
+{
+  "channel": "#general",
+  "username": "Le Bot",
+  "as_user": false,
+  "icon_emoji": ":beers:",
+  "attachments": [
+    {
+      "fields": [
+        {
+          "title": "Hello world",
+          "value": "This is an important message"
+        }
+      ],
+      "color": "#FF0000"
+    }
+  ]
+}
+```
+
+You can find all the information you need to construct a message in the [Slack API documentation for `chat.postMessage`](https://api.slack.com/methods/chat.postMessage).
+
 # Copyright
 
 © 2014-2015 Burt AB, see LICENSE.txt (BSD 3-Clause).
