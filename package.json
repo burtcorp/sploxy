@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "sploxy",
+  "main": "sploxy.js",
+  "version": "0.1.0",
+  "dependencies": {
+    "@slack/client": "^2.3.0",
+    "aws-sdk": "^2.3.4"
+  },
+  "devDependencies": {
+    "mocha": "~2.4.5",
+    "chai": "~3.5.0",
+    "temp": "^0.8.3"
+  },
+  "scripts": {
+    "test": "mocha --recursive tests/"
+  }
+}
