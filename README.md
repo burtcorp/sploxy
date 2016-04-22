@@ -144,4 +144,4 @@ You can find all the information you need to construct a message in the [Slack A
 
 # Copyright
 
-© 2014-2015 Burt AB, see LICENSE.txt (BSD 3-Clause).
+© 2016 Burt AB, see LICENSE.txt (BSD 3-Clause).
