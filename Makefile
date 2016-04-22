@@ -14,7 +14,7 @@ create: dist/sploxy.zip
 		--handler "sploxy.handler" \
 		--description "A proxy between various AWS services and Slack" \
 		--memory-size "128" \
-		--zip-file fileb://$^ \
+		--zip-file fileb://$^
 
 deploy: dist/sploxy.zip
 	aws lambda update-function-code \
