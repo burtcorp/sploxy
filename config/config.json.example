@@ -1,0 +1,8 @@
+{
+  "aws": {
+    "region": "eu-west-1"
+  },
+  "slackApiToken": {
+    "encrypted": "dGhpcyBpcyBub3QgYSByZWFsIFNsYWNrIHRva2VuCg=="
+  }
+}
