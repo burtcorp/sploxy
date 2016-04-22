@@ -1,0 +1,14 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kms:Decrypt"
+      ],
+      "Resource": [
+        "arn:aws:kms:eu-west-1:1234567890:key/abcdef-1234-5431-abcd-c0ffeebeef"
+      ]
+    }
+  ]
+}
