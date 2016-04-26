@@ -81,6 +81,8 @@ Once you've set up the IAM permissions and created your configuration you can cr
 $ make create
 ```
 
+## Test that it works
+
 You can now test that it works by creating a simple message file and invoking the Lambda function with it as input:
 
 ```console
@@ -95,6 +97,30 @@ $ aws lambda invoke --function-name sploxy --payload file://message.json sploxy.
 $ cat sploxy.out
 ```
 
+### Permissions
+
+If you get permission errors when you try to invoke the function you might not have permissions to invoke the function. This IAM policy document should be enough:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "lambda:InvokeAsync",
+        "lambda:InvokeFunction"
+      ],
+      "Resource": [
+        "arn:aws:lambda:eu-west-1:1234567890:function:sploxy"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+```
+
+Make sure that you're using the actual ARN of the function (you can find it in the upper right corner of the screen when you're inspecting the Lamda function in the web console).
+
 ## Connecting AWS services
 
 ### SNS
@@ -106,6 +132,27 @@ Once you've created the topic and set up the subscription you can try it out lik
 ```console
 $ aws sns publish --topic-arn arn:aws:sns:eu-west-1:1234567890:sploxy --message file://message.json
 ```
+
+Also make sure you have permissions to publish to the SNS topic. This is a minmal policy document for allowing a user or role to publish to SNS:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "sns:Publish"
+      ],
+      "Resource": [
+        "arn:aws:sns:eu-west-1:1234567890:sploxy"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+```
+
+Make sure that the ARN matches the topic that you set up.
 
 ## Slack message structure
 
