@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@slack/client": "^2.3.0",
-    "aws-sdk": "^2.3.4"
+    "aws-sdk": "^2.814.0"
   },
   "devDependencies": {
     "mocha": "~2.4.5",
