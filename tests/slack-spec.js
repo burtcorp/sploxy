@@ -24,34 +24,24 @@ describe("Slack", () => {
   })
 
   describe("postMessage", () => {
-    let postMessageArguments = null
-    let responseResult = null
-    let responseError = null
+    let postMessageArgument = null
+    let responsePromise = null
 
     beforeEach(() => {
-      responseResult = null
-      responseError = null
-      fakeSlackClient.chat.postMessage = (channel, message, data, callback) => {
-        postMessageArguments = [channel, message, data, callback]
-        callback(responseError, responseResult)
+      responsePromise = Promise.resolve({this: {is: {the: "response"}}})
+      fakeSlackClient.chat.postMessage = (message) => {
+        postMessageArgument = message
+        return responsePromise
       }
     })
 
     it("passes the message through the data parameter of chat.postMessage", () => {
       return client.postMessage({foo: "bar"}).then(() => {
-        expect(postMessageArguments[2]).to.deep.eq({foo: "bar"})
-      })
-    })
-
-    it("ignores the channel and message parameters to chat.postMessage", () => {
-      return client.postMessage({}).then(() => {
-        expect(postMessageArguments[0]).to.be.null
-        expect(postMessageArguments[1]).to.be.null
+        expect(postMessageArgument).to.deep.eq({foo: "bar"})
       })
     })
 
     it("returns the response of the chat.postMessage call", () => {
-      responseResult = {this: {is: {the: "response"}}}
       return client.postMessage({}).then((response) => {
         expect(response).to.deep.eq({this: {is: {the: "response"}}})
       })
@@ -59,7 +49,7 @@ describe("Slack", () => {
 
     describe("when the request fails", () => {
       beforeEach(() => {
-        responseError = "b0rk"
+        responsePromise = Promise.reject("b0rk")
       })
 
       it("fails with the error from the chat.postMessage call", () => {
