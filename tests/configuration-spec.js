@@ -79,7 +79,7 @@ describe("Configuration", () => {
         let fakeKmsFactory = null
         let decryptParameters = null
         let decryptError = null
-        let decryptResponseData = new Buffer("TOKEN")
+        let decryptResponseData = Buffer.from("TOKEN")
 
         beforeEach(() => {
           fakeKmsFactory = function (params) {
