@@ -85,9 +85,9 @@ describe("Configuration", () => {
           fakeKmsFactory = function (params) {
             fakeKms = this
             this.params = params
-            this.decrypt = (params, callback) => {
+            this.decrypt = async (params) => {
               decryptParameters = params
-              callback(decryptError, {Plaintext: decryptResponseData})
+              return {Plaintext: decryptResponseData}
             }
           }
         })
