@@ -4,8 +4,8 @@
   "main": "sploxy.js",
   "version": "0.1.0",
   "dependencies": {
-    "@slack/web-api": "^7.8.0",
-    "aws-sdk": "^2.1001.0"
+    "@aws-sdk/client-kms": "^3.741.0",
+    "@slack/web-api": "^7.8.0"
   },
   "devDependencies": {
     "chai": "~3.5.0",
