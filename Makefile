@@ -9,7 +9,7 @@ test:
 create: dist/sploxy.zip
 	aws lambda create-function \
 		--function-name $(FUNCTION_NAME) \
-		--runtime "nodejs14.x" \
+		--runtime "nodejs22.x" \
 		--role $(shell awssec aws iam get-role --role-name $(ROLE_NAME) --query Role.Arn --output text) \
 		--handler "sploxy.handler" \
 		--description "A proxy between various AWS services and Slack" \

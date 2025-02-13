@@ -79,15 +79,15 @@ describe("Configuration", () => {
         let fakeKmsFactory = null
         let decryptParameters = null
         let decryptError = null
-        let decryptResponseData = new Buffer("TOKEN")
+        let decryptResponseData = Buffer.from("TOKEN")
 
         beforeEach(() => {
           fakeKmsFactory = function (params) {
             fakeKms = this
             this.params = params
-            this.decrypt = (params, callback) => {
+            this.decrypt = async (params) => {
               decryptParameters = params
-              callback(decryptError, {Plaintext: decryptResponseData})
+              return {Plaintext: decryptResponseData}
             }
           }
         })
